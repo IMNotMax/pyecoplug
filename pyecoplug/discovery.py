@@ -167,9 +167,7 @@ class EcoDiscovery(object):
         self.on_add = on_add
         self.on_remove = on_remove
         self.discovered = {}
-        print("Printing self.discovered in def __init__:")
-        print(self.discovered)
-        print("")
+        print("Printing self.discovered in def __init__:",self.discovered)
 
         self.running = False
 
@@ -200,14 +198,10 @@ class EcoDiscovery(object):
     def process_packet(self, pkt):
         now = time.time()
         mac_addr = pkt[-3]
-        print("Printing self.discovered in process_packet:")
-        print(self.discovered)
-        print("")
+        print("Printing self.discovered in process_packet:",self.discovered)
         if not mac_addr in self.discovered:
             plug = EcoPlug(pkt)
-            print("Printing plug in process_packet:")
-            print(plug)
-            print("")
+            print("Printing plug in process_packet:",plug)
             self.on_add(plug)
             self.discovered[mac_addr] = (now, plug)
         else:
